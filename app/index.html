@@ -2,24 +2,26 @@
 <html lang="en">
 
 <head>
-  <title>Angular and Browserify</title>
+  <title>Angular Patternfly and Browserify</title>
   <link rel="stylesheet" href="css/normalize.css"></link>
   <link rel="stylesheet" href="css/unsemantic-grid-responsive.css"></link>
   <link rel="stylesheet" href="css/app.css"></link>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 
-<body>
-<div class="content grid-container" ng-app="todoApp">
+<body ng-app="patternfly.charts">
+<div ng-controller="ChartCtrl">
+  <div pf-c3-chart id="chartId" config="chartConfig" get-chart-callback="getChart"></div>
 
-  <div ng-view></div>
-
-  <div
-    ng-controller="FooterCtrl"
-    class="footer"
-    >Angular &amp; Browserify Example, Version: {{version}} <a
-      href="#/imprint">[Imprint]</a>
-  </div>
-
+  <form role="form" style="width:300px">
+    Total = {{total}}, Used = {{used}}, Available = {{available}}
+    <div class="form-group">
+      <label>Used</label>
+      <input type="text" class="form-control" ng-model="newUsed">
+    </div>
+    <input type="button" ng-click="submitform(newUsed)" value="Set Used" />
+    <input type="button" ng-click="focusUsed()" value="Focus Used" />
+  </form>
 </div>
 
 <script src="dist/app.js" type="text/javascript"></script>
